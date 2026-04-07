@@ -5,6 +5,8 @@ const colorBtns = document.querySelectorAll('.colors .option');
 const fillColor = document.querySelector('#fill-color');
 const sizeSlider = document.querySelector('#size-slider');
 const colorPicker = document.querySelector('#color-picker');
+const clearCanvas = document.querySelector('.clear');
+const saveImg = document.querySelector('.save');
 const ctx = canvas.getContext("2d");
 
 let isDrawing = false; 
@@ -66,11 +68,9 @@ const startDraw = (e) => {
     ctx.beginPath() // create new path from here
     ctx.lineWidth = brushSize; // change brush size
 
-
-    // eraser logic
-    ctx.strokeStyle = selectedTool === 'eraser' ? '#ffffff' : selectedColor;
-    ctx.fillStyle = selectedTool === 'eraser' ? '#ffffff' : selectedColor;
-
+    
+    ctx.strokeStyle = selectedColor
+    ctx.fillStyle = selectedColor
 
     // copying canvas data & passing as snapshot value..this avoids dragging the image
     snapshot = ctx.getImageData(0,0, canvas.width, canvas.height)
@@ -87,7 +87,9 @@ const drawing = (e) => {
 
     ctx.putImageData(snapshot, 0, 0); //adding copied canvas data on to this canvas
 
-    if(selectedTool === 'brush'){
+    if(selectedTool === 'brush' || selectedTool == 'eraser'){
+        ctx.strokeStyle = selectedTool === 'eraser' ? '#ffffff' : selectedColor;
+        
         ctx.lineTo(e.offsetX, e.offsetY); // creating line according to the mouse pointer 
         ctx.stroke(); // drawing/filing line with color 
     }else if(selectedTool === 'rectangle'){
@@ -133,6 +135,20 @@ colorPicker.addEventListener("input", () => {
     selectedColor = colorPicker.value; 
     document.querySelector(".color.active")?.classList.remove("active"); 
     colorPicker.classList.add("active");
+
+})
+
+clearCanvas.addEventListener('click', ()=>{
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+})
+
+
+saveImg.addEventListener("click", () => {
+    
+    const link = document.createElement("a"); // creating <a> element 
+    link.download = `${Date.now()}.jpg` ; // passing current date as link download value 
+    link.href = canvas.toDataURL(); // passing canvasData as link href value 
+    link.click(); // clicking link to download image
 
 })
 

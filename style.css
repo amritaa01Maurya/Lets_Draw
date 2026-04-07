@@ -1,0 +1,283 @@
+/* font from google */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', -apple-system, sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e6daca;
+    /* dot-grid pattern */
+    background-image: radial-gradient(#cba47e 1px, transparent 1px);
+    background-size: 20px 20px;
+    color: #432818;
+}
+
+.container {
+    display: flex;
+    gap: 24px;
+    background: #fffdf7;
+    padding: 24px;
+    border-radius: 16px;
+    /*brown shadow */
+    box-shadow: 0 12px 36px rgba(67, 40, 24, 0.08); 
+}
+
+.tools-board {
+    width: 240px;
+    background: #f8f1e5;
+    padding: 24px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    border: 1px solid #eaddcc;
+}
+
+.row {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #9C6644; /* Earthy autumn brown */
+}
+
+.options {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    max-height: 160px; /* Limits the height of the dropdown */
+    overflow-y: auto;  /* Adds vertical scrollbar if content overflows */
+    padding-right: 6px;
+}
+
+.options::-webkit-scrollbar {
+    width: 6px;
+}
+
+.options::-webkit-scrollbar-track {
+    background: transparent; 
+}
+
+.options::-webkit-scrollbar-thumb {
+    background-color: #EADDCC; /* Light autumn brown */
+    border-radius: 10px;
+}
+
+.options::-webkit-scrollbar-thumb:hover {
+    background-color: #9C6644; /* Darker brown on hover */
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    color: #5c3d2e;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.option img {
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+    /* Tints the black icons to a warm brown */
+    /* filter: invert(24%) sepia(21%) saturate(1142%) hue-rotate(344deg) brightness(94%) contrast(92%); */
+}
+
+.option:hover {
+    background: #efe2d0;
+    color: #432818;
+}
+
+.option:hover img {
+    opacity: 0.8;
+}
+
+/* Active tool styling - Autumn Leaf Orange */
+.option.active {
+    background: #fceadd; /* Very light terracotta */
+    color: #d65a31;      /* Rich autumn maple/orange */
+}
+
+.option.active img {
+    opacity: 1;
+    /* active icon */
+    filter: invert(45%) sepia(61%) saturate(1115%) hue-rotate(340deg) brightness(92%) contrast(89%);
+}
+
+input[type="checkbox"] {
+    accent-color: #d65a31;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+input[type="range"] {
+    width: 100%;
+    accent-color: #d65a31;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+.colors {
+    display: flex;
+    gap: 12px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 4px 0;
+}
+
+.color {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 0 0 2px transparent;
+}
+
+.color:hover {
+    transform: scale(1.1);
+}
+
+.color.active {
+    box-shadow: 0 0 0 2px #F8F1E5, 0 0 0 4px #D65A31;
+}
+
+/* color palatte */
+#black { background-color: #000000; } 
+#red { background-color: #ff0011; }  
+#green { background-color: #214f20; } 
+#blue { background-color: #013b86; } 
+
+/* Neutrals & Darks */
+#espresso   { background: #2B1712; } 
+#charcoal   { background: #4A4A4A; }
+#slate      { background: #8D99AE; }
+#parchment  { background: #EADDCC; }
+
+/* Warm Autumn Tones */
+#crimson    { background: #8C271E; }
+#berry      { background: #C1121F; }
+#terracotta { background: #D65A31; }
+#mustard    { background: #E9C46A; }
+
+/* Earthy Greens & Teals */
+#olive      { background: #A89F68; }
+#moss       { background: #588157; }
+#teal       { background: #2A9D8F; }
+#denim      { background: #3D5A80; }
+
+/* Cool & Soft Accents */
+#soft-blue  { background: #98C1D9; }
+#plum       { background: #6D597A; }
+#dusty-rose { background: #B56576; }
+#peach      { background: #F4A261; }
+
+
+/* custom color picker */
+#color-picker {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    
+    /* custom color wheel*/
+    background: conic-gradient(#C1121F, #D65A31, #E9C46A, #588157, #3D5A80, #6D597A, #C1121F);
+    border: none;
+    padding: 2px; 
+    cursor: pointer;
+    border-radius: 50%;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* inner circle (the actual picked color) */
+#color-picker::-webkit-color-swatch {
+    border-radius: 50%;
+    /*  */
+    border: 1px solid #050504; 
+}
+
+#color-picker::-moz-color-swatch {
+    border-radius: 50%;
+    border: 2px solid #FFFDF7;
+}
+
+/* Active state matching the rest of the theme */
+#color-picker.active {
+    box-shadow: 0 0 0 2px #F8F1E5, 0 0 0 4px #D65A31;
+}
+
+/* Hover scale effect (inherits from .color but needs to be forced for the input) */
+#color-picker:hover {
+    transform: scale(1.1);
+}
+
+.action-buttons {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.clear {
+    background: #EADDCC;
+    color: #5C3D2E;
+}
+
+.clear:hover {
+    background: #DDC8B0;
+    color: #432818;
+}
+
+.save-img {
+    background: #D65A31;
+    color: white;
+}
+
+.save-img:hover {
+    background: #c5836d;
+    box-shadow: 0 4px 12px rgba(214, 90, 49, 0.25);
+}
+
+.drawing-board {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #EADDCC;
+    background: #ffffff;
+}
+
+canvas {
+    cursor: crosshair;
+    background: #ffffff;
+    display: block;
+}

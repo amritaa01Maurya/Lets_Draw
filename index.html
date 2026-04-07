@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drawing App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+
+<div class="container">
+
+    <section class="tools-board">
+
+        <div class="row">
+            <details class="dropdown" open>
+                <summary class="title" style="cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                    Shapes <i class="fa-solid fa-chevron-down" style="font-size: 12px;"></i>
+                </summary>
+                
+                <ul class="options" style="margin-top: 10px;">
+                    <li class="option tool" id="rectangle">
+                        <i class="fa-regular fa-square"></i>
+                        <span>Rectangle</span>
+                    </li>
+
+                    <li class="option tool" id="circle">
+                        <i class="fa-regular fa-circle"></i>
+                        <span>Circle</span>
+                    </li>
+
+                    <li class="option tool" id="triangle">
+                        <i class="fa-solid fa-caret-up"></i>
+                        <span>Triangle</span>
+                    </li>
+                    
+                    <li class="option tool" id="line">
+                        <i class="fa-solid fa-minus"></i>
+                        <span>Line</span>
+                    </li>
+
+                    <li class="option">
+                        <input type="checkbox" id="fill-color">
+                        <label for="fill-color">Fill color</label>
+                    </li>
+                </ul>
+            </details>
+        </div>
+
+        <div class="row">
+            <details class="dropdown" open>
+
+                <summary class="title" style="cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                    Tools <i class="fa-solid fa-chevron-down" style="font-size: 12px;"></i>
+                </summary>
+            <ul class="options">
+                <li class="option tool active" id="brush">
+                    <i class="fa-solid fa-paintbrush"></i>
+                    <span>Brush</span>
+                </li>
+
+                <li class="option tool" id="eraser">
+                    <i class="fa-solid fa-eraser"></i>
+                    <span>Eraser</span>
+                </li>
+
+                <li class="option">
+                    <input type="range" id="size-slider" min="1" max="30" value="5">
+                </li>
+            </ul>
+            </details>
+        </div>
+
+        <div class="row">
+            <details class="dropdown" open>
+
+                <summary class="title" style="cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                    Colors <i class="fa-solid fa-chevron-down" style="font-size: 12px;"></i>
+                </summary>
+                <ul class="options colors">
+                    <li class="option color active" id="black"></li>
+                    <li class="option color" id="red"></li>
+                    <li class="option color" id="green"></li>
+                    <li class="option color" id="blue"></li>
+                    <li class="option color" id="espresso"></li>
+                    <li class="option color" id="charcoal"></li>
+                    <li class="option color" id="slate"></li>
+                    <li class="option color" id="parchment"></li>
+
+                    <li class="option color" id="crimson"></li>
+                    <li class="option color" id="berry"></li>
+                    <li class="option color" id="terracotta"></li>
+                    <li class="option color" id="mustard"></li>
+
+                    <li class="option color" id="olive"></li>
+                    <li class="option color" id="moss"></li>
+                    <li class="option color" id="teal"></li>
+                    <li class="option color" id="denim"></li>
+
+                    <li class="option color" id="soft-blue"></li>
+                    <li class="option color" id="plum"></li>
+                    <li class="option color" id="dusty-rose"></li>
+                    <input type="color" id="color-picker" class="color" value="#d65a31" title="Pick a custom color">
+                    
+                </ul>
+            </details>
+        </div>
+
+        <div class="action-buttons">
+            <button class="clear">Clear Canvas</button>
+            <button class="save-img">Save As Image</button>
+        </div>
+
+    </section>
+
+    <section class="drawing-board">
+        <canvas id="canvas" width="700" height="700"></canvas>
+    </section>
+
+</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
